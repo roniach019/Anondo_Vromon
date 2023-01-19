@@ -46,13 +46,13 @@ code {
   color: #468847;
 }
 
-.error-msg{
+.error-msg{  /* sigup & login */
   width: 100%;
   padding: 14px;
   background-color: #f0d0d3;
   color: #df786f;
 }
-
+  
 .link{
   text-decoration: none;
 }
@@ -339,17 +339,7 @@ code {
   cursor: pointer;
 }
 
-/* filter */
-.filter-products-main-box{
-  width: 100%;
-  display: flex;  
-}
 
-@media(max-width: 540px){
-  .filter-products-main-box{
-    flex-direction: column;
-  }
-}
 
 .filter-products-main-box .my-products{
   flex: 3.3;
@@ -414,3 +404,87 @@ code {
 .HealthAndBeauty,.HomeAndLifestyle,.MensFashion,.WatchesBagsAndJewellery,.Groceries{
   color: #e00a02;
 }
+
+
+
+.amit{
+  color: black;
+  border-color: rgb(104, 12, 12);
+}
+
+.information{
+  color:#468847;
+  border-color: #e00a02;
+  
+}
+.cardTitle a{
+  color: red;
+  text-decoration: none;
+}
+
+.button {
+    text-rendering: auto;
+    color: red;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: greenyellow;
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 11px system-ui;
+    padding: 1px 7px 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-image: initial;
+    
+}
+
+/* filter */
+.filter-products-main-box{
+  width: 100%;
+  display: flex;  
+  text-align: center;
+  border-radius: 50px solid red;
+
+  background-color: greenyellow;
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 11px system-ui;
+    padding: 1px 7px 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-image: initial;
+  
+}
+
+@media(max-width: 540px){
+  .filter-products-main-box{
+    flex-direction: column;
+  }
+}
+
+.photoCard {
+  height: 200px;
+  width: 200px;
+}
+
+.link{
+  display: block;
+   color: white;
+   text-align: left;
+   padding: 1px 16px;
+   text-decoration: none;
+   float: left;
+   padding: 25px;
+   margin-left: 0%;
+   overflow: hidden;
+ }
+ 

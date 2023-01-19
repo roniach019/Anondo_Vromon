@@ -5,10 +5,10 @@ export const AddProducts = () => {
 
     const [title, setTitle]=useState('');
     const [description, setDescription]=useState('');
-    const [price, setPrice]=useState('');
+    const [sheet_link, setSheet_link]=useState('');
     const [category, setCategory]=useState('');
     const [image, setImage]=useState(null);
-    const [link, setLink]=useState(null);      //link ke declear kora hoilo
+    const [web_link, setWeb_link]=useState(null);      //link ke declear kora hoilo
 
     const [imageError, setImageError]=useState('');
     
@@ -47,15 +47,17 @@ export const AddProducts = () => {
                     title,
                     description,
                     category,
-                    price: Number(price),
+                    //price: Number(price),
                     url,
-                    link,    //link collection e thakar variable decleared
+                    web_link,    //link collection e thakar variable decleared
+                    sheet_link
                 }).then(()=>{ // ekhane collection er id ta nite hobe
                     setSuccessMsg('Product added successfully');
                     setTitle('');
                     setDescription('');
                     setCategory('');
-                    setPrice('');
+                    setWeb_link('')
+                    setSheet_link('');
                     document.getElementById('file').value='';
                     setImageError('');
                     setUploadError('');
@@ -67,7 +69,8 @@ export const AddProducts = () => {
             })
         })
     }
-  
+    console.log(web_link);
+    console.log(sheet_link);
     return (
         <div className='container'>
             <br></br>
@@ -105,14 +108,17 @@ export const AddProducts = () => {
                 <input type="file" id="file" className='form-control' required
                 onChange={handleProductImg}></input>
 
+                
                 <br></br>
-                <label>Link</label>
-                <input type="text" className='form-control' required
-                onChange={(e)=>setLink(e.target.value)} value={link}></input>
 
-                <label>traveling cost </label>
-                <input type="number" className='form-control' required
-                onChange={(e)=>setPrice(e.target.value)} value={price}></input>
+                <label>Website Link</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setWeb_link(e.target.value)} value={web_link}></input>
+                <br></br>
+
+                <label>Sheet Link</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setSheet_link(e.target.value)} value={sheet_link}></input>
                 <br></br>
                 
                 {imageError&&<>
@@ -126,13 +132,13 @@ export const AddProducts = () => {
                         SUBMIT
                     </button>
                 </div>
+
+                
             </form>
             {uploadError&&<>
                     <br></br>
-                    <div className='error-msg'>{uploadError}</div>
-                    
+                    <div className='error-msg'>{uploadError}</div>                    
                 </>}
-
         </div>
     )
 }

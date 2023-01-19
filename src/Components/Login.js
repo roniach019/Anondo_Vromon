@@ -9,6 +9,7 @@ import AddProducts from './AddProducts'
 
 export const Login = () => {
 
+
     //const history = useHistory();
     const navigate = useNavigate();
 
@@ -68,8 +69,8 @@ export const Login = () => {
             </>}
             <form className='form-group' autoComplete="off"
             onSubmit={handleLogin}>               
-                <label>Email</label>
-                <input type="email" className='form-control' required
+                <label > <h1 className='information pal'>Email</h1></label>
+                <input type="email" className='form-control '  required
                 onChange={(e)=>setEmail(e.target.value)} value={email}></input>
                 <br></br>
                 <label>Password</label>

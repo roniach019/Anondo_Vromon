@@ -1,7 +1,7 @@
 import React from 'react'
 import {IndividualProduct} from './IndividualProduct'
 
-export const Products = ({products,addToCart}) => {
+export const Products = ({products}) => {  //,addToCart
 
     // console.log(products);
     
@@ -9,7 +9,7 @@ export const Products = ({products,addToCart}) => {
         <IndividualProduct 
             key = {individualProduct.ID} 
             individualProduct= {individualProduct}
-            addToCart={addToCart}
+            //addToCart={addToCart}
         />
     ))
 }
