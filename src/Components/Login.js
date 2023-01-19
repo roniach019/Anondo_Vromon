@@ -3,7 +3,8 @@ import {Link, Navigate} from 'react-router-dom'
 import {auth} from '../Config/Config'
 //import {useHistory} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import AddProducts from './AddProducts'
+//import AddProducts from './AddProducts'
+
 
 
 
@@ -24,17 +25,16 @@ export const Login = () => {
     const handleLogin=(e)=>{
         console.log('roni')
         if (email==="admin@gmail.com" && password === "admin@gmail.com") {  //jodi admin hoy            
-         setSuccessMsg('Admin Login Successfull. You will now automatically get redirected to Home page');
+         setSuccessMsg('Admin Login Successfull. You will now automatically get redirected to Admin Pannel');
             setEmail('');   //sob gula text field ke 0 kore ibo
             setPassword('');
             setErrorMsg('');
-            setTimeout(()=>{
-                setSuccessMsg('');
-                console.log('ok fine');
-                //history.push('/');
-                navigate('/');
-            },3000)
-        
+            navigate('/add-products');
+            //  setTimeout(()=>{
+            //      setSuccessMsg('');
+            //      console.log('ok fine');
+            //     //  navigate('/add-products');
+            //  },3000)        
         } 
         
         else {  // jodi admin na hoy
@@ -46,7 +46,6 @@ export const Login = () => {
             setErrorMsg('');
             setTimeout(()=>{
                 setSuccessMsg('');
-                //history.push('/');
                 navigate('/');
             },3000)   //3 sec por success message dibo abong redirect hobe
         })
@@ -79,7 +78,7 @@ export const Login = () => {
                 <br></br>
                 <div className='btn-box'>
                     <span>Don't have an account SignUp
-                    <Link to="/signup" className='link'> Here</Link></span>
+                    <Link to="/Signup" className='link'> Here</Link></span>
                     <button type="submit" className='btn btn-success btn-md'>LOGIN</button>
                 </div>
             </form>

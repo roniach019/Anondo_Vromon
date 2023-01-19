@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 export const IndividualProduct = ({individualProduct, addToCart}) => {
     const sheet_link = individualProduct.sheet_link;
     const web_link   = individualProduct.web_link;
+    const map_link   = individualProduct.map_link;
     const navigate = useNavigate(); 
 
     const view_cost=()=>{
@@ -13,7 +14,7 @@ export const IndividualProduct = ({individualProduct, addToCart}) => {
     return (
         <div className='product' style={{backgroundColor:'yellow'}}>
             <div className='product-img'>
-                <h1 className='photoCard'><a style={{}} href={individualProduct.web_link}><img src={individualProduct.url} alt="product-img"/>  </a></h1>
+                <h1 className='photoCard'><a style={{}} href={individualProduct.map_link}><img src={individualProduct.url} alt="product-img"/>  </a></h1>
                 {/* <img src={individualProduct.url} alt="product-img"/> */}
             </div>
             <h1>{}</h1>

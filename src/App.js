@@ -1,4 +1,4 @@
-import React, { Component } from 'react';  
+import React, { useState } from 'react';  //Component
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';  
 import Home from './Components/Home';  
 import Login from './Components/Login';  
@@ -7,7 +7,6 @@ import Signup from './Components/Signup';
 import NotFound from './Components/NotFound'; 
 import Information from './Components/Information'
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useState } from "react";
 
 
 import { AddProducts } from './Components/AddProducts'
@@ -70,30 +69,3 @@ const App = () => {
   }  
   
 export default App;  
-
-
-
-
-
-
-
-
-
-
-{/* <ul >  
-              <li>  
-                <Link to="/">Home</Link>  
-              </li>  
-              <li>  
-                <Link to="/Login">Login</Link>  
-              </li> 
-              <li>  
-                <Link to="/Signup">Sign up</Link>  
-              </li> 
-              <li>  
-                <Link to="/about">About Us</Link>  
-              </li>  
-              <li>  
-                <Link to="/contact">Contact Us</Link>  
-              </li>  
-            </ul>   */}

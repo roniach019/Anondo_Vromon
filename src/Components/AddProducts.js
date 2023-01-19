@@ -6,6 +6,7 @@ export const AddProducts = () => {
     const [title, setTitle]=useState('');
     const [description, setDescription]=useState('');
     const [sheet_link, setSheet_link]=useState('');
+    const [map_link, setMap_link] = useState('');
     const [category, setCategory]=useState('');
     const [image, setImage]=useState(null);
     const [web_link, setWeb_link]=useState(null);      //link ke declear kora hoilo
@@ -50,7 +51,8 @@ export const AddProducts = () => {
                     //price: Number(price),
                     url,
                     web_link,    //link collection e thakar variable decleared
-                    sheet_link
+                    sheet_link,
+                    map_link
                 }).then(()=>{ // ekhane collection er id ta nite hobe
                     setSuccessMsg('Product added successfully');
                     setTitle('');
@@ -58,6 +60,7 @@ export const AddProducts = () => {
                     setCategory('');
                     setWeb_link('')
                     setSheet_link('');
+                    setMap_link('');
                     document.getElementById('file').value='';
                     setImageError('');
                     setUploadError('');
@@ -69,8 +72,6 @@ export const AddProducts = () => {
             })
         })
     }
-    console.log(web_link);
-    console.log(sheet_link);
     return (
         <div className='container'>
             <br></br>
@@ -119,6 +120,11 @@ export const AddProducts = () => {
                 <label>Sheet Link</label>
                 <input type="text" className='form-control' required
                 onChange={(e)=>setSheet_link(e.target.value)} value={sheet_link}></input>
+                <br></br>
+
+                <label>Map Link Link</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setMap_link(e.target.value)} value={map_link}></input>
                 <br></br>
                 
                 {imageError&&<>
