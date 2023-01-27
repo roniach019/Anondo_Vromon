@@ -51,7 +51,7 @@ li {
   /* background-color: #3b5998; */
   grid-column: 2/3;
   justify-content: start;
-  align-items: center;
+  align-items:flex-start;
 }
 
 .menu-link {
@@ -122,18 +122,6 @@ li {
 
 .social-media .hamburger-menu {
   display: none;
-}
-
-.facebook {
-  color: #3b5998;
-}
-
-.instagram {
-  color: #c32aa3;
-}
-
-.youtube {
-  color: #ff0000;
 }
 
 /* hero section   */
@@ -300,4 +288,8 @@ li {
   .hero-section h1 {
     font-size: 3.8rem;
   }
+}
+
+.bar{
+   text-decoration: none;
 }

@@ -1,3 +1,94 @@
+import { useNavigate } from 'react-router-dom';
+import { IndividualProduct } from './IndividualProduct';
+
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const Information = (individualProduct, itemId) => {
+  const [person, setPerson]=useState(0);
+  const [day, setDay]=useState(0);
+  const [data, setData] = useState();
+
+  console.log(itemId);
+  console.log('roni')
+
+  const getData = async () => {
+    try {
+      const res = await fetch(
+        ".best/api/sheets/d85b0e01-a114-439f-b8bd-1a29a36a7b"
+      );  
+      const data = await res.json();
+      console.log(data);
+      setData(Object.keys(data).map((key) => data[key]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  return (
+    <div className="accordion" id="accordionExample">
+      person:
+     <input type="number" className='form-control' required
+     onChange={(e)=>setPerson(e.target.value)} value={person}></input>
+     <br></br>
+     Day   : 
+     <input type="number" className='form-control' required
+     onChange={(e)=>setDay(e.target.value)} value={day}></input>
+     <br></br>
+     <br></br>
+     <br></br>
+      {data?.map((item, i) => (
+        <div className="accordion-item" key={i}>
+          <h2 className="accordion-header" id={`heading${i}`}>
+            <button
+              className="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target={`#collapse${i}`}
+              aria-expanded="true"
+              aria-controls={`collapse${i}`}
+            >
+              {item.Place} <br></br>
+              <p>Bus price   : <br></br> {item.Bus}   total: {item.Bus*person*2}  </p>    
+              <p>Train price : <br></br> {item.Train}  total: {item.Train*person*2}</p>
+            </button>
+          </h2>
+          <div
+            id={`collapse${i}`}
+            className="accordion-collapse collapse"
+            aria-labelledby={`heading${i}`}
+            data-bs-parent="#accordionExample"
+          >
+            <div className="accordion-body">
+              <div className="d-flex justify-content-between align-items-center">
+                <span>
+                  <strong className="display-6">Bus and Train price </strong> ---{" "}
+                </span>
+              </div><br></br>
+              <p>Bus price   : {item.Bus}   total: {item.Bus*person*2}  </p>    
+              <p>Train price :{item.Train}  total: {item.Train*person*2}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Information;
+
+
+
+
+
+
+
+
+
+
 
 // import React,{useState} from 'react'
 // //import {Link} from 'react-router-dom'
@@ -130,82 +221,3 @@
 // */
 
 //import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom';
-import { IndividualProduct } from './IndividualProduct';
-
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-const Information = () => {
-  const [person, setPerson]=useState(0);
-  const [day, setDay]=useState(0);
-  const [data, setData] = useState();
-
-  const getData = async () => {
-    try {
-      const res = await fetch(
-        ".best/api/sheets/d85b0e01-a114-439f-b8bd-1a29a36a7b"
-      );  
-      const data = await res.json();
-      console.log(data);
-      setData(Object.keys(data).map((key) => data[key]));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-  return (
-    <div className="accordion" id="accordionExample">
-      person:
-     <input type="number" className='form-control' required
-     onChange={(e)=>setPerson(e.target.value)} value={person}></input>
-     <br></br>
-     Day   : 
-     <input type="number" className='form-control' required
-     onChange={(e)=>setDay(e.target.value)} value={day}></input>
-     <br></br>
-     <br></br>
-     <br></br>
-      {data?.map((item, i) => (
-        <div className="accordion-item" key={i}>
-          <h2 className="accordion-header" id={`heading${i}`}>
-            <button
-              className="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target={`#collapse${i}`}
-              aria-expanded="true"
-              aria-controls={`collapse${i}`}
-            >
-              {item.Place} <br></br>
-              <p>Bus price   : <br></br> {item.Bus}   total: {item.Bus*person*2}  </p>    
-              <p>Train price : <br></br> {item.Train}  total: {item.Train*person*2}</p>
-            </button>
-          </h2>
-          <div
-            id={`collapse${i}`}
-            className="accordion-collapse collapse"
-            aria-labelledby={`heading${i}`}
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body">
-              <div className="d-flex justify-content-between align-items-center">
-                <span>
-                  <strong className="display-6">Bus and Train price </strong> ---{" "}
-                </span>
-              </div><br></br>
-              <p>Bus price   : {item.Bus}   total: {item.Bus*person*2}  </p>    
-              <p>Train price :{item.Train}  total: {item.Train*person*2}</p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default Information;
-

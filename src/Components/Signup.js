@@ -42,31 +42,38 @@ const Signup = () => {
         <div className='container'>
             <br></br>
             <br></br>
-            <h1>Sign Up</h1>
-            <hr></hr>
+            <div className='body2' style={{backgroundColor:'yellow'}}>
+            <h1 id="signup">Sign Up</h1>
+            
             {successMsg&&<>
                 <div className='success-msg'>{successMsg}</div>
                 <br></br>
             </>}
-            <form className='form-group' autoComplete="off" onSubmit={handleSignup}>
-                <label>Full Name</label>
-                <input type="text" className='form-control' required
-                onChange={(e)=>setFullname(e.target.value)} value={fullName}></input>
+            <form id="form2" className='signupBody' autoComplete="off" onSubmit={handleSignup}>
+                {/* className='form-group' style={{backgroundColor:'yellow'}} */} 
+                <label id="fullName">Full Name</label> 
+                <input id="fNBox" type="text" className='form-control' placeholder='e.g.abc' required
+                 onChange={(e)=>setFullname(e.target.value)} value={fullName}></input>
                 <br></br>
-                <label>Email</label>
-                <input type="email" className='form-control' required
+
+                <label id="emText">Email</label>
+                <input id="emBox" type="email" className='form-control' placeholder= 'e.g.abc@example.com' required
                  onChange={(e)=>setEmail(e.target.value)} value={email}></input>
                 <br></br>
-                <label>Password</label>
-                <input type="password" className='form-control' required
+                <label id="passText">Password</label>
+                <input id="passBox" type="password" className='form-control' placeholder='password' required
                  onChange={(e)=>setPassword(e.target.value)} value={password}></input>
                 <br></br>
                 <div className='btn-box'>
-                    <span>Already have an account Login
-                    <Link to="/login" className='link'> Here</Link></span>
-                    <button type="submit" className='btn btn-success btn-md'>SIGN UP</button>
+                    <button id="subbtn" type="submit" className='btn btn-success btn-md'>Sign Up</button>
+                    <br></br>
                 </div>
+                <div className='loginLink'>
+                    <span>Already have an account? <Link to="/login" className='loglink'>login</Link></span>
+                </div>     
             </form>
+            </div>
+            
             {errorMsg&&<>
                 <br></br>
                 <div className='error-msg'>{errorMsg}</div>                

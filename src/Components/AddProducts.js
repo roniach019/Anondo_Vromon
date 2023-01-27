@@ -1,6 +1,11 @@
-import React,{useState} from 'react'
 import {storage,fs} from '../Config/Config'
 
+import React,{useState, useEffect} from 'react'
+import { Navbar } from './Navbar'
+import { Products } from './Products'
+import { IndividualFilteredProduct } from './IndividualFilteredProduct'
+//import { IndividualFilteredProduct } from './AdminCards/AdminIndividualFilteredProduct'
+//AdminIndividualFilteredProduct
 export const AddProducts = () => {
 
     const [title, setTitle]=useState('');
@@ -10,7 +15,8 @@ export const AddProducts = () => {
     const [category, setCategory]=useState('');
     const [image, setImage]=useState(null);
     const [web_link, setWeb_link]=useState(null);      //link ke declear kora hoilo
-
+    const [information1, setInformation1]=useState(null);
+    const [information2, setInformation2]=useState(null);
     const [imageError, setImageError]=useState('');
     
     const [successMsg, setSuccessMsg]=useState('');
@@ -52,7 +58,9 @@ export const AddProducts = () => {
                     url,
                     web_link,    //link collection e thakar variable decleared
                     sheet_link,
-                    map_link
+                    map_link,
+                    information1,
+                    information2,
                 }).then(()=>{ // ekhane collection er id ta nite hobe
                     setSuccessMsg('Product added successfully');
                     setTitle('');
@@ -61,6 +69,8 @@ export const AddProducts = () => {
                     setWeb_link('')
                     setSheet_link('');
                     setMap_link('');
+                    setInformation1('');
+                    setInformation2('');
                     document.getElementById('file').value='';
                     setImageError('');
                     setUploadError('');
@@ -72,8 +82,86 @@ export const AddProducts = () => {
             })
         })
     }
+
+    // Add Products
+
+    // state of products
+    const [products, setProducts]=useState([]);
+
+    // getting products function
+    const getProducts = async ()=>{
+        const products = await fs.collection('Products').get();
+        const productsArray = [];
+        for (var snap of products.docs){
+            var data = snap.data();
+            data.ID = snap.id;
+            productsArray.push({
+                ...data
+            })
+            if(productsArray.length === products.docs.length){
+                setProducts(productsArray);
+            }
+        }
+    }
+
+    useEffect(()=>{
+        getProducts();
+    },[])
+    // globl variable
+    let Product;
+
+     // categories list rendering using span tag
+     const [spans]=useState([
+        {id: 'lake', text: 'Lake'},
+        {id: 'zoo', text: 'Zoo'},
+        {id: 'sea_beach', text: 'Sea beach'},
+        {id: 'old_places', text: 'Old place'},
+        {id: 'forest', text: 'Forest'},
+        {id: 'Park', text: 'Park'},
+        {id: 'otherplace1', text: ``},
+        {id: 'otherplace2', text: ``},
+        {id: 'otherplace3', text: ''},             
+    ])
+
+    // active class state
+    const [active, setActive]=useState('');
+
+    // category state
+    //const [category, setCategory]=useState('');
+
+    // handle change ... it will set category and active states
+    const handleChange=(individualSpan)=>{
+        setActive(individualSpan.id);
+        setCategory(individualSpan.text);
+        filterFunction(individualSpan.text);
+    }
+
+    // filtered products state
+    const [filteredProducts, setFilteredProducts]=useState([]);
+
+    // filter function
+    const filterFunction = (text)=>{
+        if(products.length>1){
+            const filter=products.filter((product)=>product.category===text);
+            setFilteredProducts(filter);
+        }
+        else{
+            console.log('no products to filter')
+        } 
+    }
+
+    // return to all products
+    const returntoAllProducts=()=>{
+        setActive('');
+        setCategory('');
+        setFilteredProducts([]);
+    }
+
+
+
     return (
         <div className='container'>
+            <Navbar />
             <br></br>
             <br></br>
             <h1>Add Place</h1>
@@ -126,6 +214,16 @@ export const AddProducts = () => {
                 <input type="text" className='form-control' required
                 onChange={(e)=>setMap_link(e.target.value)} value={map_link}></input>
                 <br></br>
+
+                {/* <label>information1</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setInformation1(e.target.value)} value={information1}></input>
+                <br></br>
+
+                <label>information2</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setInformation2(e.target.value)} value={information2}></input>
+                <br></br> */}
                 
                 {imageError&&<>
                     <br></br>
@@ -145,6 +243,51 @@ export const AddProducts = () => {
                     <br></br>
                     <div className='error-msg'>{uploadError}</div>                    
                 </>}
+
+
+            {/* All Products */}
+            <br></br>
+            <div className='container-fluid filter-products-main-box'>
+                <div className='filter-box'>
+                    <h6>Filter by category</h6>
+                        {spans.map((individualSpan,index)=>(
+                            <span  key={index} id={individualSpan.id}
+                            onClick={()=>handleChange(individualSpan)}
+                            className={individualSpan.id===active ? active:'deactive'}>{individualSpan.text}
+                            </span>
+                        ))}
+                    
+                </div>
+                {filteredProducts.length > 0&&(
+                  <div className='my-products'>
+                      <h1 className='text-center'>{category}</h1>
+                      <a href="javascript:void(0)" onClick={returntoAllProducts}>Return to All Place</a>
+                      <div className='products-box'>
+                          {filteredProducts.map(individualFilteredProduct=>(
+                              <IndividualFilteredProduct key={individualFilteredProduct.ID}
+                              individualFilteredProduct={individualFilteredProduct}
+                            />
+                          ))}
+                      </div>
+                  </div>  
+                )}
+                {filteredProducts.length < 1&&(
+                    <>
+                        {products.length > 0&&(
+                            <div className='my-products'>
+                                <h1 className='text-center'>All Places</h1>
+                                <div className='products-box'>
+                                    <Products products={products} />
+                                </div>
+                            </div>
+                        )}
+                        {products.length < 1&&(
+                            <div className='my-products please-wait'>Please wait...</div>
+                        )}
+                    </>
+                )}
+            </div>
+
         </div>
     )
 }

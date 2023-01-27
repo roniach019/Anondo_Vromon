@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import { Navbar } from './Navbar'
-import { Products } from './Products'
-import {auth,fs} from '../Config/Config'
+ import { Products } from './Products'
 import { IndividualFilteredProduct } from './IndividualFilteredProduct'
+import {auth,fs} from '../Config/Config'
 
 export const Home = (props) => {
 
@@ -115,7 +115,7 @@ export const Home = (props) => {
     }
 
     return (
-        <>
+        <div className='home'>
             <Navbar user={user} />
             <br></br>
             <div className='container-fluid filter-products-main-box'>
@@ -126,13 +126,12 @@ export const Home = (props) => {
                             onClick={()=>handleChange(individualSpan)}
                             className={individualSpan.id===active ? active:'deactive'}>{individualSpan.text}
                             </span>
-                        ))}
-                    
+                        ))}                    
                 </div>
                 {filteredProducts.length > 0&&(
                   <div className='my-products'>
                       <h1 className='text-center'>{category}</h1>
-                      <a href="javascript:void(0)" onClick={returntoAllProducts}>Return to All Products</a>
+                      <a href="javascript:void(0)" onClick={returntoAllProducts}>Return to All places</a>
                       <div className='products-box'>
                           {filteredProducts.map(individualFilteredProduct=>(
                               <IndividualFilteredProduct key={individualFilteredProduct.ID}
@@ -155,10 +154,26 @@ export const Home = (props) => {
                         {products.length < 1&&(
                             <div className='my-products please-wait'>Please wait...</div>
                         )}
+                        {/* {products.length > 0&&(
+                            <div className='my-products'>
+                                <h1 className='text-center'>All Places</h1>
+                                <div className='products-box'>
+                                    {filteredProducts.map(individualFilteredProduct=>(
+                                    <IndividualFilteredProduct 
+                                        key={individualFilteredProduct.ID}
+                                        individualFilteredProduct={individualFilteredProduct}
+                            />
+                          ))}
+                                </div>
+                            </div>
+                        )}
+                        {products.length < 1&&(
+                            <div className='my-products please-wait'>Please wait...</div>
+                        )} */}
                     </>
                 )}
-            </div>       
-        </>
+            </div>
+        </div>
     )
 }
 

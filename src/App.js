@@ -18,26 +18,33 @@ const App = () => {
     return ( 
        <Router>  
         <div className="App">   
-          <nav className="main-nav">        
+          <nav className="main-nav">  
+            {/* 1st logo part  */}
+              <div className="logo">
+                <h2>
+                  <span>A</span>nando 
+                  <span>V</span>raman
+                </h2>
+              </div>      
             <div
               className={
                 showMediaIcons ? "menu-link mobile-menu-link" : "menu-link"
               }>
-              <ul>
+              <ul className='main-bar' >
                 <li>
-                  <p className='link'><Link to="/">Home</Link> </p> 
+                    <p><Link className='bar'to="/">Home</Link></p>
                 </li>
                 <li>
-                  <Link to="/Login">Login</Link>  
+                    <p><Link className='bar' to="/Login">Login</Link></p>  
                 </li>
                 <li>  
-                    <Link to="/Signup">Sign up</Link>  
+                    <p><Link className='bar'to="/Signup">Sign up</Link></p>
                   </li> 
                   <li>  
-                    <Link to="/about">About Us</Link>  
+                    <p><Link className='bar' to="/about">About</Link></p>  
                   </li>  
                   <li>  
-                    <Link to="/add-products"> Admin panel </Link>  
+                    <p><Link className='bar'to="/add-products"> Admin </Link></p>  
                   </li> 
               </ul>
             </div>
@@ -69,3 +76,4 @@ const App = () => {
   }  
   
 export default App;  
+
