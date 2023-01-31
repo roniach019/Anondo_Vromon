@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { Navbar } from './Navbar'
- import { Products } from './Products'
+import { Products } from './Products'
 import { IndividualFilteredProduct } from './IndividualFilteredProduct'
 import {auth,fs} from '../Config/Config'
 

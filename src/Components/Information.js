@@ -15,7 +15,8 @@ const Information = (individualProduct, itemId) => {
   const getData = async () => {
     try {
       const res = await fetch(
-        ".best/api/sheets/d85b0e01-a114-439f-b8bd-1a29a36a7b"
+        // ".best/api/sheets/d85b0e01-a114-439f-b8bd-1a29a36a7b"
+        "https://sheet.best/api/sheets/12327e80-9493-4b36-8e59-ae4e4bc44c12"
       );  
       const data = await res.json();
       console.log(data);

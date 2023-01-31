@@ -62,11 +62,10 @@ export const IndividualProduct = ({individualProduct}) => {
               }}
             >
               {" "}
-              Delete User
+              Delete Places
             </button>
             <div className='btn btn-danger btn-md cart-btn' onClick={view_cost}>View cost </div>           
-            
-                     
+      
         </div> 
     )
 }
