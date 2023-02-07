@@ -1,25 +1,31 @@
 import { useNavigate } from 'react-router-dom';
 import { IndividualProduct } from './IndividualProduct';
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Information = (individualProduct, itemId) => {
+
+
+const Information = () => {
   const [person, setPerson]=useState(0);
   const [day, setDay]=useState(0);
   const [data, setData] = useState();
 
-  console.log(itemId);
-  console.log('roni')
+  const location = useLocation();
+
+  const url = location.state.sheet_link;
+//                <h1 className='photoCard'><a style={{}} href={individualProduct.map_link}><img src={individualProduct.url} alt="product-img"/>  </a></h1>
+
+  console.log(typeof location.state.sheet_link);
 
   const getData = async () => {
     try {
       const res = await fetch(
+        // url
         // ".best/api/sheets/d85b0e01-a114-439f-b8bd-1a29a36a7b"
-        "https://sheet.best/api/sheets/12327e80-9493-4b36-8e59-ae4e4bc44c12"
+        // "https://sheet.best/api/sheets/12327e80-9493-4b36-8e59-ae4e4bc44c12"
       );  
       const data = await res.json();
-      console.log(data);
       setData(Object.keys(data).map((key) => data[key]));
     } catch (error) {
       console.log(error);

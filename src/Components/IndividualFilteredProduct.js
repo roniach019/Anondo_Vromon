@@ -20,7 +20,7 @@ export const IndividualFilteredProduct = ({individualFilteredProduct}) => {
             </div>
             <h1>{}</h1>
             <h1 className='cardTitle'><a style={{textDecoration: 'none'}} href={individualFilteredProduct.web_link}>{individualFilteredProduct.title}  </a></h1>
-            <a href={individualFilteredProduct.sheet_link}>{individualFilteredProduct.title}  </a>
+            <a href={individualFilteredProduct.sheet_link}>sheet</a>
             <div className='product-text description'>{individualFilteredProduct.description}</div>
             {/* <div className='product-text description'>{individualProduct.link}</div> */}
             {/* <div className='product-text price'>$ {individualProduct.price}</div> */}

@@ -31,7 +31,7 @@ export const Login = () => {
                 setSuccessMsg('');
                 console.log('ok fine');
                 //history.push('/');
-                navigate('/');
+                navigate('/add-products');
             },3000)
         
         } 
@@ -59,6 +59,9 @@ export const Login = () => {
             <br></br>
             <br></br>
             <div className="body">
+                <p>admin@gmail.com</p>
+                <p>roniach@gmail.com</p>
+                <p>roniach019@gmail.com</p>
             <h1 id="login">Login</h1>
             {successMsg&&<>  
                 <div className='success-msg'>{successMsg}</div>

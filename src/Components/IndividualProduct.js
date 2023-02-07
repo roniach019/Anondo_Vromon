@@ -1,7 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {fs} from '../Config/Config'
-import Products from './Products';
 import {db} from '../Config/Config'; // https://firebase.google.com/docs/firestore/manage-data/delete-data#web-version-8
 import {
   collection,
@@ -19,15 +18,22 @@ export const IndividualProduct = ({individualProduct}) => {
     const map_link   = individualProduct.map_link;
     const navigate = useNavigate(); 
 
-    const experiment = 23;
-    const view_cost=(individualProduct)=>{
+    console.log(sheet_link);
+
+    // const sheet_link1 = new URL(individualProduct.sheet_link);
+    // const url = new URL("https://developer.mozilla.org/en-US/docs/Web/API/URL/toString");
+    // url.toString();
+const url = individualProduct.sheet_link; 
+console.log(typeof url) // string
+console.log(url);
+  
+    const view_cost=()=>{
           navigate(
-            '/Information', individualProduct.experiment
-            // {
-            //     experiment
-            //     // itemId: 86,//
-            //     // otherParam: 'anything you want here',
-            // } 
+            '/Information' ,
+            {state :
+              {sheet_link : individualProduct.sheet_link }
+            }
+            
           );
     }
 
@@ -52,7 +58,7 @@ export const IndividualProduct = ({individualProduct}) => {
                 {/* <img src={individualProduct.url} alt="product-img"/> */}
             </div>
             <h1 className='cardTitle'><a style={{textDecoration: 'none'}} href={individualProduct.web_link}>{individualProduct.title}  </a></h1>
-            <a href={individualProduct.sheet_link}>{individualProduct.title}  </a>
+            <a href={individualProduct.sheet_link} >Sheet</a>
             <div className='product-text description'>{individualProduct.description}</div>
             {/* <div className='product-text description'>{individualProduct.link}</div> */}
             {/* <div className='product-text price'>$ {individualProduct.price}</div> */}
